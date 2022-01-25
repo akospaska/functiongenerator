@@ -1,0 +1,147 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF8">
+        
+        <title>Matek Quiz</title>
+    </head>
+    <body>
+       
+       
+
+       
+        <form action="index.html" onsubmit="return myFunction() ">
+            <p id="question"></p>
+            1. megoldás: (2 tizedes jegyig) <input type="text" id="answer1" size="20" name="answer1"><br>
+           2. megoldás: (2 tizedes jegyig) <input type="text" id="answer2" size="20" name="answer2"><br>
+         
+            <input type="submit" value="Submit"> 
+          </form>
+          
+          <script>
+          
+
+          var a,b,c, sqrt1, sqrt2
+
+          
+            function generate(){
+                a= Math.floor(Math.random() * (10 - -10) ) + -10;
+                b=Math.floor(Math.random() * (10 - -10) ) + -10;
+                c=Math.floor(Math.random() * (10 - -10) ) + -10;
+                if(b*b-4*a*c<0){
+                    generate()
+                }else{
+                    sqrt1 = (-b+ Math.sqrt(b*b-4*a*c))/2*a
+                    sqrt2 = (-b- Math.sqrt(b*b-4*a*c))/2*a
+                }
+            }
+            
+            generate()
+
+           
+          
+               
+                var square =  document.createElement("SUP");
+                var textnode = document.createTextNode("2");         
+                square.appendChild(textnode);                              
+                
+                
+                var functionElement = a +"x"
+                
+
+                
+                var secondArg 
+
+                if (b>0){
+                    secondArg=    "+"+b+"x"
+                }else{
+                    secondArg=    b+"x"
+                }
+
+                var thirdArg
+
+                if (c>0){
+                    thirdArg= "+"+c
+                }else{
+                    thirdArg= c
+                }
+                
+               
+                
+                
+                 start()
+                
+
+                function start(){
+                    document.getElementById("question").append(functionElement)
+                    document.getElementById("question").appendChild(square);
+                    document.getElementById("question").append(secondArg)
+                    document.getElementById("question").append(thirdArg)
+                    //console.log(functionElement)
+                }
+
+            
+
+               
+
+          /* if (true){
+              print("generálás")
+          } */
+
+
+
+          function myFunction() {
+           
+           var answ1 = document.getElementById("answer1").value;
+           var answ2 = document.getElementById("answer2").value;
+           var splitted1 = sqrt1.toString().slice(".")
+           var splitted2 = sqrt2.toString().slice(".")
+           console.log("splitted" +splitted1[1])
+           if(sqrt1>0&&sqrt1<10){
+                sqrt1 = sqrt1.toString().slice(0,3)
+                //console.log(sqrt1)
+           }else if(sqrt1>10){
+            sqrt1 = sqrt1.toString().slice(0,4)
+           }else if(sqrt1<0&&sqrt1>-10){
+            sqrt1 = sqrt1.toString().slice(0,3)
+           }else if(sqrt1<-10){
+            sqrt1 = sqrt1.toString().slice(0,4)
+           }
+
+           if(sqrt2>0&&sqrt2<10){
+                sqrt2 = sqrt2.toString().slice(0,3)
+               // console.log(sqrt2)
+           }else if(sqrt2>10){
+            sqrt2 = sqrt2.toString().slice(0,4)
+           }else if(sqrt2<0&&sqrt2>-10){
+            sqrt2 = sqrt2.toString().slice(0,3)
+           }else if(sqrt2<-10){
+            sqrt2 = sqrt2.toString().slice(0,4)
+           }
+
+          // console.log(sqrt1.toString().slice(0,5))
+
+            if((answ1.toString() == sqrt1 && answ2.toString() == sqrt2 || answ1.toString() == sqrt2 && (answ2.toString() == sqrt1))){
+               alert("Ügyes")
+           }else{
+               alert("a helyes megoldások a következők: "+ sqrt1 + " , " + sqrt2 )
+           }
+
+
+           submitOK = "false";
+         
+           
+           
+         
+           
+         
+           if (submitOK == "false") {
+            // return false;
+           }
+
+           return true;
+         }
+          </script>
+          
+        
+    </body>
+</html>
